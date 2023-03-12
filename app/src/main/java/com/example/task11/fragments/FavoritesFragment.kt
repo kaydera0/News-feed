@@ -6,34 +6,45 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.task11.adapters.RecycleViewAdapter
 import com.example.task11.databinding.FragmentFavoritesBinding
+import com.example.task11.databinding.FragmentNewslineBinding
+import com.example.task11.uiElements.NewsUiElement
+import com.example.task11.viewModels.NewslineViewModel
 import com.example.task11.viewModels.NotificationsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoritesFragment : Fragment() {
 
     private var _binding: FragmentFavoritesBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private val vm: NewslineViewModel by viewModels()
+    private lateinit var adapter: RecycleViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
 
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        val defaultArr = ArrayList<NewsUiElement>()
+        adapter = RecycleViewAdapter(defaultArr)
+        binding.recycleViewFavorites.adapter = adapter
+        binding.recycleViewFavorites.layoutManager = LinearLayoutManager(requireContext())
+        binding.recycleViewFavorites.setHasFixedSize(true)
+        binding.recycleViewFavorites.itemAnimator = DefaultItemAnimator()
+
+
+
+        return binding.root
     }
 
     override fun onDestroyView() {

@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -54,12 +57,18 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:converter-simplexml:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
 //rss parser
     implementation 'com.prof18.rssparser:rssparser:5.0.2'
     //swipe layout
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     //picasso
     implementation 'com.squareup.picasso:picasso:2.8'
-
-
+    //hilt
+    implementation 'com.google.dagger:hilt-android:2.45'
+    kapt 'com.google.dagger:hilt-compiler:2.45'
+}
+kapt {
+    correctErrorTypes true
 }
