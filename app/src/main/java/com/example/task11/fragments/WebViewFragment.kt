@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
 import androidx.fragment.app.activityViewModels
 import com.example.task11.databinding.FragmentWebViewBinding
 import com.example.task11.viewModels.MainViewModel
@@ -27,6 +28,9 @@ class WebViewFragment : Fragment() {
         val url = arguments?.getString("url")
 
         binding.webView.loadUrl(url!!)
+        binding.webView.getSettings().domStorageEnabled = true
+        binding.webView.getSettings().cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
+
         return binding.root
     }
 
