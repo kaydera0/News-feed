@@ -9,16 +9,29 @@
         android:id="@+id/navigation_home"
         android:name="com.example.task11.fragments.NewslineFragment"
 
-        tools:layout="@layout/fragment_newsline" />
+        tools:layout="@layout/fragment_newsline" >
+        <action
+            android:id="@+id/action_navigation_home_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.task11.fragments.FiltersFragment"
-        tools:layout="@layout/fragment_filters" />
+        tools:layout="@layout/fragment_filters" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.task11.fragments.FavoritesFragment"
 
         tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.example.task11.fragments.WebViewFragment"
+        android:label="fragment_web_view"
+        tools:layout="@layout/fragment_web_view" />
 </navigation>
