@@ -44,6 +44,7 @@ class RecycleViewAdapter(val uiElementArray: List<NewsUiElement>) : RecyclerView
                 favoriteNews.add(newsUiElement)}
                 else
                     binding.favNews.background = newsUiElement.favoriteUnCheck
+                
             }
         }
 
