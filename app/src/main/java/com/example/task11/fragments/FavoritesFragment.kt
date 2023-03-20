@@ -30,9 +30,9 @@ class FavoritesFragment : Fragment() {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
 
         val defaultArr = ArrayList<NewsUiElement>()
-        adapter = RecycleViewAdapter(defaultArr)
+        adapter = RecycleViewAdapter(defaultArr,null)
         if (vm.favNews.value?.size!=0){
-            adapter = RecycleViewAdapter(vm.favNews.value!!)
+            adapter = RecycleViewAdapter(vm.favNews.value!!,null)
         }
         binding.recycleViewFavorites.adapter = adapter
         binding.recycleViewFavorites.layoutManager = LinearLayoutManager(requireContext())

@@ -1,8 +1,8 @@
 package com.example.task11.di
 
 import android.content.Context
-import androidx.room.Room
-import com.example.task11.room.RoomDB
+import com.example.task11.network.Network
+import com.example.task11.repositories.RssRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,13 +12,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class Hilt {
+class RepositoriesComponent {
 
     @Singleton
     @Provides
-    fun provideRoomDatabase(@ApplicationContext appContext: Context): RoomDB {
-        return Room
-            .databaseBuilder(appContext, RoomDB::class.java, RoomDB.DB_NAME)
-            .build()
+    fun provideRssRepo(@ApplicationContext context:Context): RssRepository {
+        return RssRepository(context)
     }
 }

@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val vm: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,19 +27,13 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        findNavController(R.id.nav_host_fragment_activity_main)
 
-        val navView: BottomNavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+//        val navView: BottomNavigationView = binding.navView
+//        val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
-        navView.setupWithNavController(navController)
-    }
+//        val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
-    override fun onPause() {
-        super.onPause()
-
-        Log.d("MY_TAG", vm.favNews.value?.size.toString() + " size db")
-        CoroutineScope(Dispatchers.IO).launch {
-            vm.saveFavoritesDB(vm.favNews.value!!)
-        }
+//        navView.setupWithNavController(navController)
     }
 }
